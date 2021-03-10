@@ -10,27 +10,27 @@ namespace ShopAPI.Controllers
     [ApiController]
     [Route("[controller]")]
 
-    public class CustomersController : ControllerBase
+    public class OrdersController : ControllerBase
     {
         private readonly Context _context;
-        public CustomersController(Context context)
+        public OrdersController(Context context)
         {
             _context = context;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Customers>>> Get_Customers()
+        public async Task<ActionResult<IEnumerable<Orders>>> Get_Orders()
         {
-            return await _context.Customers.ToListAsync();
+            return await _context.Orders.ToListAsync();
         }
 
         [HttpPost]
-        public async Task<ActionResult<Customers>> Add_Customer(Customers custo)
+        public async Task<ActionResult<Orders>> Add_Order(Orders ord)
         {
-            await _context.Customers.AddAsync(custo);
+            await _context.Orders.AddAsync(ord);
             await _context.SaveChangesAsync();
 
-            return custo;
+            return ord;
         }
     }
 }
