@@ -3,7 +3,7 @@ using Models;
 
 namespace DTO
 {
-    public class PlaceOrderDTO
+    public class OrderDTO
     {
         public int order_id {get; set;}
         public int Customer_Id {get; set;}

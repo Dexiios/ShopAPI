@@ -4,8 +4,8 @@ using DTO;
 
 namespace DTO
 {
-    public class CustomerAndOrdersDTO : CustomerDTO
+    public class CustomerOrdersListDTO : CustomerDTO
     {
-        public List<PlaceOrderDTO> Orders { get; set; }
+        public List<OrderDTO> Orders { get; set; }
     }
 }

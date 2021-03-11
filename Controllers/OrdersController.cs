@@ -51,7 +51,7 @@ namespace ShopAPI.Controllers
         }
 
         [HttpPost("Place Order")]
-        public async Task<ActionResult<IEnumerable<PlaceOrderDTO>>> Place_Order(PlaceOrderDTO request)
+        public async Task<ActionResult<IEnumerable<OrderDTO>>> Place_Order(OrderDTO request)
         {
             
             var order = new Orders()

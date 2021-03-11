@@ -33,7 +33,7 @@ namespace ShopAPI.Controllers
             var ord = from orders in _context.Orders
             join products in _context.Products on orders.Product_Id equals products.Id
             join customers in _context.Customers on orders.Customer_Id equals customers.Id
-            select new PlaceOrderDTO
+            select new OrderDTO
             {
                 order_id = orders.Id,
                 Customer_Id = customers.Id,
@@ -42,7 +42,7 @@ namespace ShopAPI.Controllers
 
             var cust = from customers in _context.Customers
             join order in _context.Orders on customers.Id equals order.Customer_Id
-            select new CustomerAndOrdersDTO
+            select new CustomerOrdersListDTO
             {
                 customer_id = customers.Id,
                 First_name = customers.First_name,
