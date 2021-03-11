@@ -19,18 +19,18 @@ namespace ShopAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Products>>> Get_Orders()
+        public async Task<ActionResult<IEnumerable<Products>>> Get_Products()
         {
             return await _context.Products.ToListAsync();
         }
 
         [HttpPost]
-        public async Task<ActionResult<Products>> Add_Order(Products pro)
+        public async Task<ActionResult<Products>> Add_product(Products pro)
         {
             await _context.Products.AddAsync(pro);
             await _context.SaveChangesAsync();
 
-            return pro;
+            return CreatedAtAction("Get_Products", new { id = pro.Id }, pro);
         }
     }
 }

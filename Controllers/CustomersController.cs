@@ -30,7 +30,7 @@ namespace ShopAPI.Controllers
             await _context.Customers.AddAsync(custo);
             await _context.SaveChangesAsync();
 
-            return custo;
+            return CreatedAtAction("Get_Customers", new { id = custo.Id }, custo);
         }
     }
 }
