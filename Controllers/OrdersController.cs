@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using ShopAPI.Data;
 using Models;
 using Microsoft.EntityFrameworkCore;
+using DTO;
 
 namespace ShopAPI.Controllers
 {
@@ -24,6 +25,22 @@ namespace ShopAPI.Controllers
             return await _context.Orders.ToListAsync();
         }
 
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Orders>> Get_Orders_By_Id(int id)
+        {
+            var ord = await _context.Orders.FindAsync(id);
+
+            if(ord == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return ord;
+            }
+            
+        }
+        
         [HttpPost]
         public async Task<ActionResult<Orders>> Add_Order(Orders ord)
         {
@@ -31,6 +48,22 @@ namespace ShopAPI.Controllers
             await _context.SaveChangesAsync();
 
             return ord;
+        }
+
+        [HttpPost("Place Order")]
+        public async Task<ActionResult<IEnumerable<PlaceOrderDTO>>> Place_Order(PlaceOrderDTO request)
+        {
+            
+            var order = new Orders()
+            {
+                Product_Id = request.Product_Id,
+                Customer_Id = request.Customer_Id
+            };
+            await _context.Orders.AddAsync(order);
+            await _context.SaveChangesAsync();
+            
+
+            return CreatedAtAction("Get_Orders", new { id = order.Id }, order);
         }
     }
 }
