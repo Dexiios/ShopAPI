@@ -34,7 +34,7 @@ namespace ShopAPI
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers();
+            //services.AddControllers();
 //---------------------------------------------------------------------------------------
             services.AddDbContext<Context>(opt =>
             {
@@ -140,6 +140,8 @@ namespace ShopAPI
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
