@@ -9,6 +9,7 @@ namespace Helpers
     {
         public AutoMapperProfile()
         {
+            //<source class, destination class>
             CreateMap<User, UserModel>();
             CreateMap<RegisterModel, User>();
             CreateMap<UpdateModel, User>();
